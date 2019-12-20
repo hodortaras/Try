@@ -1,0 +1,26 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}
+    <h1>{% if category %}{{ category.title }}{% else %}Товар:{% endif %}</h1>
+{% endblock %}
+{% block content %}
+    <div class="product-detail">
+      <div class="row">
+        <div class="col-lg-5 col-sm-5 mb-5">
+          <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" style = "width: 500px">
+        </div>
+        <div class="col-lg-7 col-sm-7 mb-7">
+        <h1>{{ product.name }}</h1>
+        <!-- <h2><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h2> -->
+        <p class="price"><strong>{{ product.price }}грн.</strong></p>
+        {{ product.description|linebreaks }}
+        <form action="{% url "cart:cart_add" product.id %}" method="post">
+         {{ cart_product_form }}
+         {% csrf_token %}
+         <input type="submit" value="Добавить в корзину">
+       </form>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

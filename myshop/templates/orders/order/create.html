@@ -1,0 +1,77 @@
+{% extends "shop/base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+<h1></h1>
+<div class="col-sm-4 offset-1">
+<div class="order-info">
+  <h3>Ваш заказ:</h3>
+  <ul>
+    {% for item in cart %}
+    <li>
+      {{ item.quantity }} x {{ item.product.name }}:
+      <span> {{ item.total_price }} грн.</span>
+    </li>
+    {% endfor %}
+  </ul>
+  <p>Сумма: {{ cart.get_total_price }} грн.</p>
+</div>
+</div>
+<div class="col-sm-4 offset-4">
+
+  <form method="post" class="form-signin">{% csrf_token %}
+    <div class="text-center mb-4">
+      <img class="mb-4" src="{static 'url'}" alt="" width="150">
+      <h1 class="h3 mb-3 font-weight-normal">Ваш заказ:</h1>
+      <p></p>
+    </div>
+
+    <div id="" style="">
+      <div class="form-label-group">
+        <label for="id_name">Имя</label>
+        {{ form.first_name }}
+        {{ form.first_name.errors }}
+      </div>
+
+      <div class="form-label-group">
+        <label for="id_last_name">Фамилия</label>
+        {{ form.last_name }}
+        {{ form.last_name.errors }}
+      </div>
+      <div class="form-label-group">
+        <label for="id_phone_number">Номер телефона</label>
+        {{ form.phone_number }}
+        {{ form.phone_number.errors }}
+      </div>
+      <div class="form-label-group">
+        <label for="id_email">E-mail</label>
+        {{ form.email }}
+        {{ form.email.errors }}
+      </div>
+      <div class="form-label-group">
+        <label for="id_region">Область</label>
+        {{ form.region }}
+        {{ form.region.errors }}
+      </div>
+      <div class="form-label-group">
+        <label for="id_city">Город</label>
+        {{ form.city }}
+        {{ form.city.errors }}
+      </div>
+      <div class="form-label-group">
+        <label for="id_adress">Номер склада</label>
+        {{ form.adress }}
+        {{ form.adress.errors }}
+      </div> <div class="form-label-group">
+        <label for="id_coment">Коментарий</label>
+        {{ form.coment }}
+        {{ form.coment.errors }}
+      </div>
+    </div>
+    <button class="btn btn-lg btn-secondary btn-block" type="submit">Отправить</button>
+
+    <p class="mt-5 mb-3 text-muted text-center">политика конфиденциальности</p>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}
+    <h1>Корзина:</h1>
+{% endblock %}
+{% block content %}
+    <table class="table table-hover" style="width: 100%; overflow-y: auto; _overflow: auto; margin: 0 0 1em;">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Товар</th>
+            <th>Кол-во, шт.</th>
+            <th>Удалить с корзины</th>
+            <th>Цена единицы, грн</th>
+            <th>Сумма, грн</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+            {% with product=item.product %}
+                <tr>
+                    <td>
+                        <a href="{{ product.get_absolute_url }}">
+                            <img src="
+                                {% if product.image %}
+                                    {{ product.image.url }}
+                                {% else %}
+                                    {% static "img/no_image.png" %}
+                                {% endif %}"style="width: 250px">
+                        </a>
+                    </td>
+                    <td align="center">{{ product.name }} </td>
+                    <td align="center">{{ item.quantity }}</td>
+                    <td align="center"><a href="{% url "cart:cart_remove" product.id%}">Удалить</a></td>
+                    <td align="center" class="num">{{ item.price }}</td>
+                    <td align="center" class="num">{{ item.total_price }}</td>
+                </tr>
+            {% endwith %}
+        {% endfor %}
+        <tr class="total">
+            <td>Общая сумма корзины:</td>
+            <td colspan="4"></td>
+            <td class="num">{{ cart.get_total_price }} грн.</td>
+        </tr>
+        <tr class="total">
+            <td colspan="4"></td>
+            <td><p class='text-center'><a href="{% url "shop:product_list" %}"><button class="btn btn-outline-dark">Продолжить покупки</button></a></p></td>
+            <td><p class='text-center'><a href="{% url "orders:order_create" %}"><button class="btn btn-outline-dark">Оформить заказ</button></a></p></td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="text-right">
+
+
+    </p>
+
+
+        <!-- <a href="{% url "shop:product_list" %}" class="button light">Продолжить покупки </a>
+        <a href="{% url "orders:order_create" %}" class="button">Оформить заказ</a> -->
+
+{% endblock %}
