@@ -2,7 +2,7 @@ anyjson==0.3.3
 bootstrap-py==0.8.2
 defusedxml==0.6.0
 dj-database-url==0.5.0
-Django==2.2.6
+Django==2.2.10
 django-filter==2.2.0
 djangorestframework==3.10.3
 get==2019.4.13
