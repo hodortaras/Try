@@ -10,7 +10,7 @@ gunicorn==20.0.4
 imagesize==1.1.0
 Jinja2==2.10.3
 lazy-object-proxy==1.4.2
-Pillow==6.2.1
+Pillow==9.0.0
 post==2019.4.13
 product==0.1.1.1
 psycopg2==2.8.4
